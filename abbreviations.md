@@ -1,0 +1,4 @@
+- IDS - Intrusion Detection System
+- Bash - Bourne-Again Shell
+- CLI - Command Line Interface
+- GUI - Graphical User Interface
