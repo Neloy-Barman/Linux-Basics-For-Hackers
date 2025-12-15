@@ -1,0 +1,1 @@
+- **Piping:** In Linux (and Windows for that matter) allows us to take the output of one command and send it as input to another command. This is called piping, and we use the | command to do it.
