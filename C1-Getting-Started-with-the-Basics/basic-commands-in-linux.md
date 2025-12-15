@@ -177,3 +177,27 @@ kali >nmap -h
 - **Possible help flags**: `--help`, `-h`, `-?`
 - **Note**: Not every application supports all of these.
 - **Tip**: If one help option does not work, try another.
+
+# Referencing Manual Pages with `man`
+
+Manual pages provide detailed documentation for most Linux commands and applications, including a description and command synopsis.
+
+## Open a Manual Page
+
+- **Command pattern**: `man <command>`
+
+### Example
+
+```bash
+man aircrack-ng
+```
+
+- **Result**: Opens the manual page for `aircrack-ng` with more detail than a basic help screen.
+
+## Navigate and Exit in `man`
+
+- **Scroll forward**: `ENTER`
+- **Page down**: `PG DN`
+- **Page up**: `PG UP`
+- **Quit / Exit**: `q`
+  - Returns you to the command prompt.
