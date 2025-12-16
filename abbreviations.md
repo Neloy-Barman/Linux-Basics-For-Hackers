@@ -2,3 +2,4 @@
 - Bash - Bourne-Again Shell
 - CLI - Command Line Interface
 - GUI - Graphical User Interface
+- NIDS - Network Intrusion Detection System
