@@ -10,3 +10,4 @@
 - LAN - Local Area Network
 - DoS - Denial-of-Service
 - AP - Access Point
+- DHCP - Dynamic Host Configuration Protocol
