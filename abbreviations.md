@@ -3,3 +3,10 @@
 - CLI - Command Line Interface
 - GUI - Graphical User Interface
 - NIDS - Network Intrusion Detection System
+- DNS - Domain Name System
+- IP Address - Internet Protocol
+- NIC - Network Interface Card
+- MAC Address - Media Access Control Address
+- LAN - Local Area Network
+- DoS - Denial-of-Service
+- AP - Access Point
