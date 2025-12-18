@@ -11,3 +11,6 @@
 - DoS - Denial-of-Service
 - AP - Access Point
 - DHCP - Dynamic Host Configuration Protocol
+- ns - nameserver
+- mx - mail exchange server
+- BIND - Berkeley Internet Name Domain

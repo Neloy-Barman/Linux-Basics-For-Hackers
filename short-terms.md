@@ -1,2 +1,4 @@
 - **Piping:** In Linux (and Windows for that matter) allows us to take the output of one command and send it as input to another command. This is called piping, and we use the | command to do it.
 - **dhcp daemon:** A process that runs in the background - dhcpd or the dhcp daemon.
+- **DNS:** DNS is the service that translates a domain name like hackersarise.com to the appropriate IP address; that way, your system knows how to get to it. Without DNS, we would all have to remember thousands of IP addresses for our favorite websites — no small task even for a savant.
+- **BIND:** The most common Linux DNS server is the Berkeley Internet Name Domain (BIND). In some cases, Linux users will refer to DNS as BIND, but don’t be confused: DNS and BIND both map individual domain names to IP addresses.
