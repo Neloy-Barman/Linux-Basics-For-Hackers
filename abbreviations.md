@@ -14,3 +14,4 @@
 - ns - nameserver
 - mx - mail exchange server
 - BIND - Berkeley Internet Name Domain
+- apt - Advanced Packaging Tool

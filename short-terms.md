@@ -2,3 +2,4 @@
 - **dhcp daemon:** A process that runs in the background - dhcpd or the dhcp daemon.
 - **DNS:** DNS is the service that translates a domain name like hackersarise.com to the appropriate IP address; that way, your system knows how to get to it. Without DNS, we would all have to remember thousands of IP addresses for our favorite websites — no small task even for a savant.
 - **BIND:** The most common Linux DNS server is the Berkeley Internet Name Domain (BIND). In some cases, Linux users will refer to DNS as BIND, but don’t be confused: DNS and BIND both map individual domain names to IP addresses.
+- **Repositories:** The servers that hold the software for particular distributions of Linux are known as repositories.
