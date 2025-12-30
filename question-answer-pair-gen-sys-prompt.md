@@ -357,9 +357,74 @@ return to the command prompt.
   - **q:** Press to quit (exit) the view and return to the command prompt.
 ````
 
+## EXAMPLE 9
+### INPUT
+```
+Making Variable Value Changes Permanent
+When you change an environment variable, that change only occurs in that particular
+environment; in this case, that environment is the bash shell session. This means that
+when you close the terminal, any changes you made are lost, with values set back to
+their defaults. If you want to make the changes permanent, you need to use the export
+command. This command will export the new value from your current environment
+(the bash shell) to the rest of the system, making it available in every environment until
+you change and export it again.
+Variables are strings, so if you run on the cautious side, it isn’t a bad idea to save the
+contents of a variable to a text file before you modify it. For example, since we’re about
+to change the PS1 variable, which controls the information you display in the prompt,
+first run the following command to save the existing values to a text file in the current
+user’s home directory:
+kali >echo $HISTSIZE> ~/valueofHISTSIZE.txt
+This way, you can always undo your changes. If you want to be even more cautious and
+create a text file with all the current settings, you can save the output of the set
+command to a text file with a command like this one:
+kali >set> ~/valueofALLon01012017.txt
+After you’ve changed a variable, as we did in
+Listing 71, you can make the change
+permanent by entering export and then the name of the variable you changed, as shown
+here:
+kali >export HISTSIZE
+Now the HISTSIZE variable will still be set to 0 when you leave this environment and enter
+another environment. If you want to reset the HISTSIZE variable to 1,000, simply enter
+this:
+kali >HISTSIZE=1000
+kali >export HISTSIZE
+This code snippet will set your HISTSIZE variable’s value to 1,000 and export it to all your
+environments.
+```
+### OUTPUT
+````
+- Make the change to the `HISTSIZE` variable permanent so it persists outside the current shell session
+  ```bash
+    export HISTSIZE
+  ```
+  - **Session Behavior:** By default, changing a variable only affects the current bash shell session. Values are lost when the terminal is closed.
+  - **Export Command:** This command exports the new value from the current environment to the rest of the system, making it available in every environment.
+
+- Save the current value of the `$HISTSIZE` variable to a text file named `valueofHISTSIZE.txt` in the home directory
+  ```bash
+    echo $HISTSIZE > ~/valueofHISTSIZE.txt
+  ```
+  - **Purpose:** Variables are strings, so it is a safety precaution to save the contents of a variable to a text file before modifying it, allowing you to undo changes later.
+
+- Save the output of all current environment settings to a text file named `valueofALLon01012017.txt` in the home directory
+  ```bash
+    set > ~/valueofALLon01012017.txt
+  ```
+  - **Purpose:** This creates a text file containing all current settings for a more comprehensive backup.
+
+- Reset the `HISTSIZE` variable to the value `1000` and make it permanent across all environments
+  ```bash
+    HISTSIZE=1000
+    export HISTSIZE
+  ```
+````
+
+
 ## RESPONSE RETURN FORMAT
 ````
 - <question>
     <answer>
 ````
 ```````
+
+_**Note:** Use `Gemini 3 Pro` from `outlier.ai` to prepare the QA pairs._
