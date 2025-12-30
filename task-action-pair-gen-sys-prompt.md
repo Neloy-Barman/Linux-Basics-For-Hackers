@@ -5,7 +5,7 @@
 ```
 
 # TASK
-Extract command references with task descriptions and explanations from the provided content. Follow the structure, rules, and formatting demonstrated in the examples. Return the response within 4-backticks enforced block.
+Generate task descriptions and outputs with explanations, command references from the provided content. Follow the structure, rules, and formatting demonstrated in the examples. Return the response within 4-backticks enforced block.
 
 # FORMAT RULES
 1. Each entry starts with a dash (-) followed by an action/task description
@@ -36,7 +36,7 @@ If you’re in another directory, pwd will return that directory name instead.
 ```
 ### OUTPUT
 ````
-- Finding Yourself in the current Directory
+- Find the current directory you are in
   ```bash
     pwd
   ```
@@ -64,7 +64,7 @@ OTW
 ```
 ### OUTPUT
 ````
-- Checking Logged in User
+- Check the logged in user
   ```bash
     whomai
   ```
@@ -118,7 +118,7 @@ network (LAN) settings, an essential skill for hacking.
 ```
 ### OUTPUT
 ````
-- Grab and Analyze Network Information
+- Grab connected Network interfaces and Analyze Information
   ```bash
     ifconfig
   ```
@@ -156,7 +156,7 @@ to your new spoofed IP address!
 ```
 ### OUTPUT
 ````
-- Spoof MAC Address to `00:11:22:33:44:55`
+- Spoof the MAC Address of wired interface `eth0` to `00:11:22:33:44:55`
   ```bash
     ifconfig eth0 down
     ifconfig hw ether 00:11:22:33:44:55
@@ -196,7 +196,7 @@ IP address, a new broadcast address, and new netmask to your network interface e
 ```
 ### OUTPUT
 ````
-- Assign new IP Address from DHCP
+- Assign new IP Address to wired interface `eth0` from DHCP
   ```bash
     dhclient eth0
   ```
@@ -414,63 +414,141 @@ use this identifier to our advantage.
 ## EXAMPLE 10
 ### INPUT
 ```
-Filtering by Process Name
-When we inquire about or perform an action on processes, we usually don’t want all of
-the processes displayed on the screen. It’s simply a problem of too much information.
-Most often, we want to find information on a single process. To do so, we can use the
-filtering command grep, which I introduced in 
-Chapter 1.
-To demonstrate, we’ll use the Metasploit exploitation framework, the most widely used
-exploitation framework and nearly every hacker’s good friend. This comes installed on
-your Kali system, so start Metasploit with the following:
-kali >msfconsole
-Once the exploitation framework has been started, let’s see whether we can find it in
-the list of processes. To do so, use the ps aux command and then pipe it (|) to grep
-looking for the string msfconsole, as in 
-Listing 62.
-kali >ps aux | grep msfconsole
-root 39756  0.0  0.0  4304  716  pts/2 Ss+  15:13  0:00 sh c service
-postgresql start && msfdb init & msfconsole
-root 39759  35.1  15.2  4304  227888  pts/2 Sl+  15:13  1:36 ruby /usr/bin/
-msfconsole
-root 39892  0.0  0.0  4304  940  pts/2 S+  15:18  0:00 grep msfconsole
-Listing 62: Filtering a ps search to find a particular process
-From the filtered output in this listing, you should see all the processes that match the
-term msfconsole. The PostgreSQL database, which is the database Metasploit uses, is
-shown first, then the msfconsole program itself from /usr/bin/msfconsole. Finally, you
-should see the grep command you used to look for msfconsole. Notice that the output did
-not include the column header list from ps. Since the keyword, msfconsole, is not in the
-header, it is not displayed. Even so, the results are displayed in the same format.
-From this, you can learn some important information. If, for example, you need to
-know how many resources Metasploit is using, you can consult the third column (the
-CPU column), to see that it’s using 35.1 percent of your CPU, and consult the fourth
-column to see that it’s using 15.2 percent of your system memory. That’s quite a bit. It’s
-a demanding beast!
+Running Processes in the Background
+In Linux, whether you’re working from the command line or the GUI, you’re working
+within a shell. All commands that run are executed from within that shell, even if they
+run from the graphical interface. When you execute a command, the shell waits until
+the command is completed before offering another command prompt.
+At times, you may want a process to run in the background, rather than having to wait
+for it to complete in that terminal. For instance, say we want to work on a script in a
+text editor and so have called our text editor (leafpad) by entering the following:
+kali >leafpad newscript
+In this case, the bash shell will open the leafpad text editor to create newscript. While
+we work in the text editor, the terminal is occupied with running the text editor. If we
+return to the terminal, we should see that it is running our text editor and that we have
+no new prompt to allow us to enter more commands.
+We could, of course, open another terminal to run more commands, but a better option
+to save resources and screen real estate is to start the text editor running in the
+background. Running a process in the background simply means that it will continue to
+run without needing the terminal. In this way, the terminal is freed up for other duties.
+To start the text editor in the background, just append an ampersand (&) to the end of
+the command, like so:
+kali >leafpad newscript &
+Now, when the text editor opens, the terminal returns a new command prompt so we
+can enter other commands on our system while also editing our newscript. This is
+effective for any process that may run for a significant length of time when you want
+use the terminal. As a hacker, you’ll find this useful for running multiple terminals with
+multiple tasks, to save resources and screen space.
 ```
 ### OUTPUT
 ````
-- Start the Metasploit exploitation framework
+- Open a file named `newscript` in `leafpad` in background
   ```bash
-    msfconsole
+    leafpad newscript &
   ```
+  - Append `&` to the end of any command to run it in the background.
+  - The terminal immediately returns a new prompt for other commands.
+````
 
-- Filter processes by name to find a specific process (e.g., msfconsole)
+## EXAMPLE 11
+### INPUT
+```
+Moving a Process to the Foreground
+If you want to move a process running in the background to the foreground, you can
+use the fg (foreground) command. The fg command requires the PID of the process you
+want to return to the foreground, as shown next.
+kali >fg 1234
+If you don’t know the PID, you can use the ps command to find it.
+```
+### OUTPUT
+````
+- Move a process with PID `1234` to the foreground
   ```bash
-    ps aux | grep msfconsole
+    fg 1234
   ```
-  - The `grep` command filters the output to show only processes matching the specified string.
-  - The pipe (`|`) sends the output of `ps aux` to `grep` for filtering.
-  - Note: The column headers are not displayed because they don't contain the search keyword.
-  - Note: The `grep` command itself will also appear in the results since it contains the search term.
+  - Use `ps` to find the PID if unknown.
+````
 
-- Understanding filtered process output
-  - The results maintain the same column format as `ps aux`:
-    - **USER:** The user who invoked the process.
-    - **PID:** The process ID.
-    - **%CPU:** The percent of CPU this process is using.
-    - **%MEM:** The percent of memory this process is using.
-    - **COMMAND:** The name of the command that started the process.
-  - Example: If `%CPU` shows `35.1` and `%MEM` shows `15.2`, the process is using 35.1% of CPU and 15.2% of system memory.
+## EXAMPLE 12
+### INPUT
+```
+SCHEDULING PROCESSES
+Both Linux system administrators and hackers often need to schedule processes to run
+at a particular time of day. A system administrator might want to schedule a system
+backup to run every Saturday night at 2 AM, for example. A hacker might want to set a
+script to run to perform reconnaissance on a regular basis, finding open ports or
+vulnerabilities. In Linux, you can accomplish this in at least two ways: with at and crond.
+The at command is a daemon—a background process—useful for scheduling a job to
+run once at some point in the future. The crond is more suited for scheduling tasks to
+occur every day, week, or month, and we’ll cover this in detail in 
+Chapter 16.
+We use the at daemon to schedule the execution of a command or set of commands in
+the future. The syntax is simply the at command followed by the time to execute the
+Table 62 contains the
+process. The time argument can be provided in various formats. 
+most common at time formats.
+Table 62: Time Formats Accepted by the at Command
+Time format
+at 7:20pm
+Meaning
+Scheduled to run at 7:20 PM on the current day
+at 7:20pm June 25
+at noon
+at noon June 25
+at tomorrow
+at now + 10 hours
+at now + 5 days
+at now + 3 weeks
+Scheduled to run at 7:20 PM on June 25
+Scheduled to run at noon on the current day
+Scheduled to run at noon on June 25
+Scheduled to run tomorrow
+at now + 20 minutes 
+Scheduled to run in 20 minutes from the current time
+Scheduled to run in 10 hours from the current time
+Scheduled to run in five days from the current date
+Scheduled to run in three weeks from the current date
+at 7:20pm 06/25/2019 
+Scheduled to run at 7:20 PM on June 25, 2019
+When you enter the at daemon with the specified time, at goes into interactive mode
+and you are greeted with an at> prompt. Here is where you enter the command you
+want executed at the specified time:
+kali >at 7:20am
+at >/root/myscanningscript
+This code snippet will schedule myscanningscript to execute today at 7:20 AM.
+```
+### OUTPUT
+````
+- Schedule the script `/root/myscanningscript` to run at 7:20 AM today using the `at` command
+  ```bash
+    at 7:20am
+    at>/root/myscanningscript
+  ```
+  - After entering the `at` command with a time, it enters interactive mode at the `at>` prompt.
+  - Type the command(s) to execute at the scheduled time, then press `Ctrl+D` to submit.
+  - This schedules `/root/myscanningscript` to run once at 7:20 AM on the current day.
+
+- Schedule the script `/root/myscanningscript` to run using various `at` time formats
+  ```bash
+    at 7:20pm June 25
+    at>/root/myscanningscript
+  ```
+  - **Time Formats:**
+    - `at 7:20pm` - Runs at 7:20 PM on the current day.
+    - `at 7:20pm June 25` - Runs at 7:20 PM on June 25.
+    - `at noon` - Runs at noon (12:00 PM) on the current day.
+    - `at noon June 25` - Runs at noon on June 25.
+    - `at tomorrow` - Runs at the same time tomorrow.
+    - `at now + 20 minutes` - Runs 20 minutes from now.
+    - `at now + 10 hours` - Runs 10 hours from now.
+    - `at now + 5 days` - Runs 5 days from now.
+    - `at now + 3 weeks` - Runs 3 weeks from now.
+    - `at 7:20pm 06/25/2019` - Runs at 7:20 PM on June 25, 2019.
+  - All formats schedule a **one-time** job for future execution via the `at` daemon.
+
+- Understand `at` vs `crond`
+  - **`at` daemon:** Schedules a job to run **once** at a specified future time.
+  - **`crond` daemon:** Schedules **recurring** tasks (daily, weekly, monthly).
 ````
 
 ## RESPONSE RETURN FORMAT
@@ -488,4 +566,4 @@ a demanding beast!
 ````
 ``````
 
-_**Note:** Use `Claude Opus 4.5-Think` from `outlier.ai` to prepare the responses._
+_**Note:** Use `Claude Opus 4.5-Think` from `outlier.ai` to prepare the responses. If it's providing too much content try with `DeepSeek v3.2`._
