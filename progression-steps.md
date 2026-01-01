@@ -12,6 +12,7 @@
 	- Understand and implement the commands in the practice lab
 	- Check whether the mentioned thing in the book are correct or not.
 	- If not, find out what went wrong and the correct thing.
+	- If you find things not working after multiple tries and costing too much time, mark and leave it for now, move to next and come back later here.      
 	- Note down those.
 - Mark Unknown Vocabularies:
     - Highlight the vocabs to learn on a later time period.
